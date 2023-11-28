@@ -14,8 +14,6 @@ module.exports = class UserInfo {
       "info.json"
     );
 
-    console.log("this: ", this);
-
     fs.readFile(filePath, (err, fileContent) => {
       // using arrow function is a must, since it points to the "this" object of the class
       let contents = [];
