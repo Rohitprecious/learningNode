@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [form, setForm] = useState();
   const [initialData, setinitialData] = useState([]);
+  const [successReaponse, setsuccessResponse] = useState("");
   const getSavedData = async () => {
     const rawRespo = await fetch("http://localhost:8080/", {
       method: "GET",
     });
     const respo = await rawRespo.json();
+    console.log({ respo });
     setinitialData(respo);
   };
 
@@ -38,7 +40,7 @@ function App() {
     const response = await rawResponse.json();
     console.log({ response });
     getSavedData();
-    // setinitialData(response.data);
+    setsuccessResponse(response.data);
   };
   return (
     <div className="App">
@@ -56,6 +58,7 @@ function App() {
           initialData.map((item, index) => <p key={index}>{item.fullName}</p>)}
         <button>Submit</button>
       </form>
+      {successReaponse}
     </div>
   );
 }
